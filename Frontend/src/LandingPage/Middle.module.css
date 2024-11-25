@@ -56,8 +56,10 @@
 
 .navBtns {
     font-weight: bold;
-    border: 2px solid #3b82f6; /* Blue-400 */
-    color: #3b82f6; /* Blue-400 */
+    border: 2px solid #3b82f6;
+    /* Blue-400 */
+    color: #3b82f6;
+    /* Blue-400 */
     border-radius: 0.5rem;
     padding: 0.5rem;
     width: 18rem;
@@ -67,6 +69,7 @@
 }
 
 .navBtns:hover {
-    background-color: #3b82f6; /* Blue-400 */
+    background-color: #3b82f6;
+    /* Blue-400 */
     color: white;
 }

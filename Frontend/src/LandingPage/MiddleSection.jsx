@@ -3,12 +3,15 @@ import styles from './Middle.module.css';
 import Typed from 'typed.js';
 import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const MiddleSection = () => {
 
     const el = useRef(null);
 
-    const user = localStorage.getItem('loggedInUser');
+    let user = localStorage.getItem('loggedInUser');
+
+    if(!user) user = "Guest User";
 
     const navigate = useNavigate();
 
@@ -53,6 +56,7 @@ const MiddleSection = () => {
                     <button
                         type="button"
                         className={`${styles.navBtns}`}
+                        onClick={() => navigate('/sell')}
                     >
                         I am Selling
                     </button>

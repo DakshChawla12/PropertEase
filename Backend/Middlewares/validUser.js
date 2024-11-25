@@ -1,11 +1,21 @@
-const users = require('../db');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET || "helloWorld";
 
-async function isValidUser(req,res,next) {
-    const {email , user_email} = req.body;
-    if(email != user_email){
-        return res.json({success:false , message:"please use a valid email id"});
-    } else {
+async function isValidUser(req, res, next) {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ success: false, message: 'No token provided' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.user = decoded;
         next();
+    } catch (err) {
+        res.status(401).json({ success: false, message: 'Invalid token' });
     }
 }
 

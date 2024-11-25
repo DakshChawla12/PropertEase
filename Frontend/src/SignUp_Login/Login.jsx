@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {handleError , handleSuccess} from '../utils';
 import { ToastContainer } from 'react-toastify';
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const Login = () => {
 
@@ -21,9 +22,8 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         
-        // Ensure these are correctly destructured
         const { email, password } = loginDetails;
-    
+
         if (!email || !password) return handleError('All fields are required');    
         try {
             const url = "http://localhost:9090/auth/login";
@@ -32,16 +32,18 @@ const Login = () => {
                     'Content-Type': 'application/json',
                 },
             });
-            const result = response.data;
-            console.log(result);
-            const { success, message, jwtToken, name } = result;
+
+            console.log(response.data); // Check the response data
+
+            const { success, message, jwtToken, user } = response.data;
+
             if (success) {
                 handleSuccess("Login successful");
-                localStorage.setItem('token', jwtToken);
-                localStorage.setItem('loggedInUser', name);
-                localStorage.setItem('user_email', email);
+                localStorage.setItem('token', jwtToken); // Check this line
+                localStorage.setItem('loggedInUser', user.username);
+                localStorage.setItem('user_email', user.email);
                 setTimeout(() => {
-                    navigate('/home');
+                    navigate('/');
                 }, 1000);
             } else {
                 handleError(message);
@@ -52,11 +54,17 @@ const Login = () => {
         }
     };
 
+
     return (
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 mt-12 mb-0">
             <div className="relative max-w-lg mx-auto bg-white bg-opacity-80 rounded-lg">
                 <div className="absolute inset-0 bg-white rounded-lg"></div>
                 <div className="relative z-10 p-6">
+
+                    <Link className='' to={'/'}>
+                        <IoMdArrowRoundBack className='' />
+                    </Link>
+
                     <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Welcome Back</h1>
 
                     <p className="mx-auto mt-4 max-w-md text-center text-gray-500">

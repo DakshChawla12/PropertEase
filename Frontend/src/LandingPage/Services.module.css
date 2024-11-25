@@ -4,28 +4,28 @@
     background-color: rgb(226, 226, 226);
 }
 
-.heading{
+.heading {
     display: flex;
     justify-content: center;
     padding: 2rem;
 }
 
-.heading h1{
+.heading h1 {
     color: #353941;
     font-weight: 1000;
     font-size: 3.5rem;
 }
 
-.container{
+.container {
     cursor: pointer;
     padding: 6rem;
-    padding-top: 0;  
+    padding-top: 0;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.container .box{
+.container .box {
     border-radius: 15px;
     position: relative;
     width: 320px;
@@ -34,7 +34,7 @@
     box-shadow: 0 15px 45px rgba(0, 0, 0, .1);
 }
 
-.container .box::before{
+.container .box::before {
     border-radius: 15px;
     content: '';
     position: absolute;
@@ -48,13 +48,13 @@
     transition: transform 0.5s;
 }
 
-.container .box:hover::before{
+.container .box:hover::before {
     transform: scaleY(1);
     transform-origin: bottom;
     transition: transform 0.5s;
 }
 
-.container .box h2{
+.container .box h2 {
     position: absolute;
     z-index: 1;
     font-size: 4em;
@@ -65,13 +65,13 @@
     transition: 0.5s;
 }
 
-.container .box:hover h2{
+.container .box:hover h2 {
     opacity: 1;
     color: white;
     transform: translateY(-40px);
 }
 
-.container .box h3{
+.container .box h3 {
     position: relative;
     font-size: 1.5em;
     z-index: 2;
@@ -79,12 +79,12 @@
     transition: 0.5s;
 }
 
-.container .box:hover h3{
+.container .box:hover h3 {
     color: white;
 
 }
 
-.container .box p{
+.container .box p {
     position: relative;
     z-index: 2;
     color: #555;

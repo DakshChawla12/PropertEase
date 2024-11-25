@@ -23,7 +23,7 @@ const Filters = () => {
             <input
                 type="number"
                 name="price"
-                value={filters.price}
+                value={filters.price || ''} // Ensure it works for falsy values
                 onChange={handleChange}
                 className="rounded-lg p-1"
             />
@@ -31,7 +31,7 @@ const Filters = () => {
             <input
                 type="text"
                 name="location"
-                value={filters.location}
+                value={filters.location || ''}
                 onChange={handleChange}
                 className="rounded-lg p-1"
             />
@@ -39,20 +39,20 @@ const Filters = () => {
             <input
                 type="number"
                 name="area"
-                value={filters.area}
+                value={filters.area || ''}
                 onChange={handleChange}
                 className="rounded-lg p-1"
             />
             <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded"
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 duration-200"
             >
                 Filter
             </button>
             <button
                 type="button"
                 onClick={clearFilters}
-                className="bg-gray-500 text-white px-2 py-2 rounded"
+                className="bg-gray-500 text-white px-2 py-2 rounded  hover:bg-gray-600 duration-200"
             >
                 Clear Filters
             </button>

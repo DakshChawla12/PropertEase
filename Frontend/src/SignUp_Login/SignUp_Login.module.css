@@ -1,5 +1,5 @@
-.container{
-    background-image: url('loginsignUp.jpg');
+.container {
+    background-image: url('/loginsignUp.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

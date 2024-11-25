@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+* {
+    font-family: 'SUSE';
+}
+
 :root {
   --primary-color: #1e88e5;
   --primary-light: #64b5f6;
@@ -13,7 +20,7 @@
   background-position: center;
   background-size: cover;
   height: 100vh;
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
   margin: 0;
   padding: 0;
   display: flex;
@@ -123,7 +130,8 @@
 .input[type="text"],
 .input[type="email"],
 .input[type="url"],
-.input[type="number"] {
+.input[type="number"],
+.input[type="file"] {
   width: 100%;
   padding: 12px 15px;
   font-size: 14px;

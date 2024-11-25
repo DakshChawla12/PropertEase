@@ -1,9 +1,26 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import {handleError} from '../utils';
+import { ToastContainer } from 'react-toastify';
 
-const Post = ({ url, location, bedrooms, bathrooms, area, price }) => {
+const Post = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
+    const navigate = useNavigate();
+
+    const handlePostClick = () => {
+        if(!localStorage.getItem('token')){
+            console.log("error");
+            handleError("please login to view full details");
+            return;
+        }
+        navigate(`/details/${id}`); // Redirect to the details page based on the ID
+    };
+
     return (
-        <div className="w-[350px] h-76 rounded overflow-hidden shadow-lg hover:shadow-xl">
-            <img className="w-full h-40 object-cover" src={url} alt="Property Image" />
+        <div 
+            className="w-[350px] h-76 rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer" 
+            onClick={handlePostClick}
+        >
+            <img className="w-full h-40 object-cover" src={url} alt="Property Image" loading='lazy'/>
             <div className="px-4 py-2 bg-white">
                 <div className="mb-2">
                     <h2 className="text-lg font-bold text-blue-800">{location}</h2>
@@ -26,6 +43,7 @@ const Post = ({ url, location, bedrooms, bathrooms, area, price }) => {
                     <p className="text-2xl font-extrabold text-blue-800">{`${price} $ `}</p>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 }

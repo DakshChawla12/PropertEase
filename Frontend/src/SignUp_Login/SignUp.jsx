@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {handleSuccess , handleError} from '../utils';
+import { handleSuccess, handleError } from '../utils';
 import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
 
@@ -8,53 +8,66 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const [signUpDetails , setSignUpDetails] = useState({
-        first_name:'',
-        last_name:'',
-        email:'',
-        password:''
-    })
+    const [signUpDetails, setSignUpDetails] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        contactNumber: '' // Add contact number to state
+    });
 
-    const handleChange =(e) => {
-        const {name,value} = e.target;
-        setSignUpDetails({...signUpDetails,[name]:value});
-    }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setSignUpDetails({ ...signUpDetails, [name]: value });
+    };
 
     const handleSignUp = async (e) => {
-        e.preventDefault();
-        const {first_name,last_name,email,password} = signUpDetails;
-        if(!first_name || !last_name || !email || !password) return handleError('All fields are required');
+    e.preventDefault();
+    const { first_name, last_name, email, password, contactNumber } = signUpDetails;
 
+    // Validate required fields
+    if (!first_name || !last_name || !email || !password || !contactNumber) {
+        return handleError('All fields are required');
+    }
 
-        try{
-            const url = "http://localhost:9090/auth/signup";
-            const response = await axios.post(url, {
-                first_name,
-                last_name,
-                email,
-                password
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const result = await response.data;
-            console.log(result);
-            const{message,success} = result;
-            if(success) {
-                handleSuccess("Sign Up successFull");
-                setTimeout(() => {
-                    navigate('/login');
-                },1000)
-            }
-            else{
-                handleError("Sign Up failed");
-            }
-        } catch(err) {
+    // Generate the username
+    const username = `${first_name} ${last_name}`;
+
+    console.log('Payload being sent:', { username, email, password, contactNumber }); // Log the payload
+
+    try {
+        const url = "http://localhost:9090/auth/signup";
+        const response = await axios.post(url, {
+            username,
+            email,
+            password,
+            contactNumber
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = await response.data;
+        const { message, success } = result;
+
+        if (success) {
+            handleSuccess("Sign Up successful");
+            setTimeout(() => {
+                navigate('/login');
+            }, 1000);
+        } else {
+            handleError(message);
+        }
+    } catch (err) {
+        if (err.response) {
+            handleError(err.response.data.message || "Sign Up failed");
+        } else {
             handleError("Sign Up failed");
         }
-
     }
+};
+
 
     return (
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 bg-white rounded-lg mt-12">
@@ -106,6 +119,18 @@ const SignUp = () => {
                     </div>
 
                     <div>
+                        <label htmlFor="contact-number" className="sr-only">Contact Number</label>
+                        <input
+                            type="text"
+                            id="contact-number"
+                            className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
+                            placeholder="Enter contact number"
+                            name='contactNumber'
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div>
                         <label htmlFor="password" className="sr-only">Password</label>
                         <input
                             type="password"
@@ -130,7 +155,7 @@ const SignUp = () => {
                     </p>
                 </form>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 }

@@ -1,0 +1,19 @@
+.background{
+    background-color: white;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10rem;
+    padding-bottom: 5rem; /* Optional: Adds some padding around the content */
+    max-width: 100%; /* Optional: Limits the width of the container */
+}
+
+.heading{
+    margin-bottom: 3rem;
+    font-weight: 800;
+}
