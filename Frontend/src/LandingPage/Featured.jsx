@@ -55,23 +55,23 @@ const Featured = () => {
                 <h1 className="font-extrabold text-[3.72rem] text-[#5f5f5f]">Featured Listings</h1>
                 <div className="flex flex-col gap-3">
                     <button
-                        className="w-[10rem] h-[3rem] bg-[#4A73A1] text-white rounded-lg"
+                        className="w-[15rem] h-[3rem] bg-[#4A73A1] text-white rounded-xl"
                         onClick={() => navigate('/buy')}
                     >
-                        Show More
+                        Show More ...
                     </button>
                     <div className="flex gap-3 items-center justify-center">
                         {/* Button toggling category */}
                         <button
                             onClick={toggleCategory}
-                            className="w-[7rem] h-[2rem] cursor-pointer bg-[#4A73A1] text-white rounded-lg"
+                            className="w-[7rem] h-[2rem] cursor-pointer bg-[#4A73A1] text-white rounded-xl"
                         >
                             {category === 'selling' ? 'Renting' : 'Buying'}
                         </button>
 
                         {/* Button toggling order */}
-                        <button onClick={toggleSortOrder} className={`w-[7rem] h-[2rem] bg-[#4A73A1] text-white rounded-lg`}>
-                            {order === 1 ? 'Decreasing' : 'Increasing'}
+                        <button onClick={toggleSortOrder} className={`w-[7rem] h-[2rem] bg-[#4A73A1] text-white rounded-xl`}>
+                            {order === 1 ? 'High to Low' : 'Low to High'}
                         </button>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ const Single_Listing = () => {
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [index, setIndex] = useState(4);
+    const [index, setIndex] = useState(0);
 
     const email = localStorage.getItem('user_email');
 
